@@ -77,8 +77,6 @@ dracoLoader.setDecoderPath("/draco/");
 const gltfLoader = new GLTFLoader();
 gltfLoader.setDRACOLoader(dracoLoader);
 
-let mixer = null;
-
 let myFace: THREE.Object3D | null = null;
 
 gltfLoader.load("/models/myFace.glb", (gltf) => {
@@ -184,6 +182,7 @@ const clock = new THREE.Clock();
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
+  console.log(elapsedTime)
 
   //   Animate the face on cursor move
   if (myFace) {

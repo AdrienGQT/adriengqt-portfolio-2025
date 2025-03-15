@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "host": "vite --host"
+    "deploy": "vercel --prod"
   },
   "devDependencies": {
     "@types/three": "^0.174.0",
@@ -18,6 +18,7 @@
   "dependencies": {
     "gsap": "^3.12.7",
     "lil-gui": "^0.20.0",
-    "three": "^0.174.0"
+    "three": "^0.174.0",
+    "vercel": "^41.4.1"
   }
 }
