@@ -25,7 +25,7 @@ const scene: THREE.Scene = new THREE.Scene();
 // Lights
 
 // Directionnal Light
-const directionnalLight = new THREE.DirectionalLight("#f0e6d0", 3);
+const directionnalLight = new THREE.DirectionalLight("#f0e6d0", 1.2);
 directionnalLight.position.set(1.2, 0.5, 6);
 scene.add(directionnalLight);
 
@@ -33,41 +33,44 @@ const directionalLightSettings = {
   color: "#f0e6d0", // Store the original hex string
 };
 
-gui.add(directionnalLight, "intensity").min(1).max(10).step(0.1);
-gui.add(directionnalLight.position, "x").min(-5).max(10).step(0.1);
-gui.add(directionnalLight.position, "y").min(-5).max(10).step(0.1);
-gui.add(directionnalLight.position, "z").min(-5).max(10).step(0.1);
-gui.addColor(directionalLightSettings, "color").onChange((value: string) => {
-  directionnalLight.color.set(value);
-});
+gui.add(directionnalLight, "intensity").min(1).max(10).step(0.1).name('Main intensity');
+gui.addColor(directionalLightSettings, "color").name('Main color').onChange((value: string) => {
+    directionnalLight.color.set(value);
+  });
+gui.add(directionnalLight.position, "x").min(-5).max(10).step(0.1).name('Main X');
+gui.add(directionnalLight.position, "y").min(-5).max(10).step(0.1).name('Main Y');
+gui.add(directionnalLight.position, "z").min(-5).max(10).step(0.1).name('Main Z');
+
 
 // Ambient Light
-const ambientLight = new THREE.AmbientLight("#696969", 2);
+const ambientLight = new THREE.AmbientLight("#696969", 0.4);
 scene.add(ambientLight);
 
 const ambientLightSettings = {
   color: "#696969",
 };
 
-gui.add(ambientLight, "intensity").min(0).max(10).step(0.1);
+gui.add(ambientLight, "intensity").min(0).max(10).step(0.1).name('Ambient intensity');
 
-gui.addColor(ambientLightSettings, "color").onChange((value: string) => {
+gui.addColor(ambientLightSettings, "color").name('Ambient color').onChange((value: string) => {
   ambientLight.color.set(value);
 });
 
 // Cursor Light
-const cursorLight = new THREE.DirectionalLight("#ed4a4a", 1.2);
-cursorLight.position.set(0, 0, 1);
+const cursorLight = new THREE.DirectionalLight("#16a5fe", 2.2);
+cursorLight.position.set(0, 0, 0.2);
 scene.add(cursorLight);
 
 const cursorLightSettings = {
-    color: "#ed4a4a",
+    color: "#16a5fe",
   };
 
-gui.add(cursorLight, 'intensity').min(0).max(10).step(0.1)
-gui.addColor(cursorLightSettings, 'color').onChange((value: string) => {
+gui.add(cursorLight, 'intensity').min(0).max(10).step(0.1).name('Cursor intensity')
+gui.addColor(cursorLightSettings, 'color').name('Cursor color').onChange((value: string) => {
     cursorLight.color.set(value)
 })
+gui.add(cursorLight.position, 'z').min(0).max(10).step(0.1).name('Cursor Z')
+
 
 /* Models */
 
@@ -82,6 +85,7 @@ let myFace: THREE.Object3D | null = null;
 gltfLoader.load("/models/myFace.glb", (gltf) => {
   // console.log(typeof(gltf.scene))
   myFace = gltf.scene;
+  myFace.scale.set(1.25,1.25,1.25)
   scene.add(myFace);
 
   tick();
