@@ -146,8 +146,8 @@ window.addEventListener("mousemove", (e: MouseEvent) => {
   cursor.x = e.clientX / window.innerWidth;
   cursor.y = e.clientY / window.innerHeight;
 
-  targetRotation.y = (cursor.x * 2 - 1) / 10;
-  targetRotation.x = (cursor.y * 2 - 1) / 10;
+  targetRotation.y = (cursor.x * 2 - 1) / 13;
+  targetRotation.x = (cursor.y * 2 - 1) / 13;
 
   cursorLightTarget.x = (cursor.x - 0.5) * 3
   cursorLightTarget.y = -(cursor.y - 0.5) * 3
@@ -173,7 +173,7 @@ scene.add(camera);
 /* Renderer */
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
-  alpha: false,
+  alpha: true,
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -190,7 +190,7 @@ const tick = () => {
     gsap.to(myFace.rotation, {
       x: targetRotation.x,
       y: targetRotation.y,
-      duration: 1,
+      duration: 2,
       ease: "power2.out",
     });
   }
@@ -200,7 +200,7 @@ const tick = () => {
     gsap.to(cursorLight.position, {
       x: cursorLightTarget.x,
       y: cursorLightTarget.y,
-      duration: 1,
+      duration: 0.5,
       ease: "power2.out",
     });
   }
