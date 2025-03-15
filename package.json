@@ -9,12 +9,14 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/three": "^0.174.0",
     "sass": "^1.85.1",
     "typescript": "~5.7.2",
     "vite": "^6.2.0"
   },
   "dependencies": {
     "gsap": "^3.12.7",
+    "lil-gui": "^0.20.0",
     "three": "^0.174.0"
   }
 }
