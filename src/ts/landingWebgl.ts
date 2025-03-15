@@ -26,7 +26,7 @@ const scene: THREE.Scene = new THREE.Scene();
 
 // Directionnal Light
 const directionnalLight = new THREE.DirectionalLight("#f0e6d0", 3);
-directionnalLight.position.set(1.2, 0.5, 3.4);
+directionnalLight.position.set(1.2, 0.5, 6);
 scene.add(directionnalLight);
 
 const directionalLightSettings = {
@@ -34,9 +34,9 @@ const directionalLightSettings = {
 };
 
 gui.add(directionnalLight, "intensity").min(1).max(10).step(0.1);
-gui.add(directionnalLight.position, "x").min(-5).max(5).step(0.1);
-gui.add(directionnalLight.position, "y").min(-5).max(5).step(0.1);
-gui.add(directionnalLight.position, "z").min(-5).max(5).step(0.1);
+gui.add(directionnalLight.position, "x").min(-5).max(10).step(0.1);
+gui.add(directionnalLight.position, "y").min(-5).max(10).step(0.1);
+gui.add(directionnalLight.position, "z").min(-5).max(10).step(0.1);
 gui.addColor(directionalLightSettings, "color").onChange((value: string) => {
   directionnalLight.color.set(value);
 });
@@ -54,6 +54,20 @@ gui.add(ambientLight, "intensity").min(0).max(10).step(0.1);
 gui.addColor(ambientLightSettings, "color").onChange((value: string) => {
   ambientLight.color.set(value);
 });
+
+// Cursor Light
+const cursorLight = new THREE.DirectionalLight("#ed4a4a", 1.2);
+cursorLight.position.set(0, 0, 1);
+scene.add(cursorLight);
+
+const cursorLightSettings = {
+    color: "#ed4a4a",
+  };
+
+gui.add(cursorLight, 'intensity').min(0).max(10).step(0.1)
+gui.addColor(cursorLightSettings, 'color').onChange((value: string) => {
+    cursorLight.color.set(value)
+})
 
 /* Models */
 
@@ -118,21 +132,31 @@ let cursor = {
 };
 
 let targetRotation = {
-    x : 0,
-    y : 0
-}
+  x: 0,
+  y: 0,
+};
+
+let cursorLightTarget = {
+  x: 0,
+  y: 0,
+};
 
 window.addEventListener("mousemove", (e: MouseEvent) => {
   // Get an normalize cursor position
   cursor.x = e.clientX / window.innerWidth;
   cursor.y = e.clientY / window.innerHeight;
 
-  targetRotation.y = (cursor.x * 2 - 1) / 10
-  targetRotation.x = (cursor.y * 2 - 1) / 10
+  targetRotation.y = (cursor.x * 2 - 1) / 10;
+  targetRotation.x = (cursor.y * 2 - 1) / 10;
+
+  cursorLightTarget.x = (cursor.x - 0.5) * 3
+  cursorLightTarget.y = -(cursor.y - 0.5) * 3
 });
 
 /* Camera */
-// Orthographic camera with proper scaling
+
+// Orthographic camera
+
 const frustumSize = 5; // Adjust this value based on your model size
 const aspect = sizes.width / sizes.height;
 const camera = new THREE.OrthographicCamera(
@@ -166,6 +190,16 @@ const tick = () => {
     gsap.to(myFace.rotation, {
       x: targetRotation.x,
       y: targetRotation.y,
+      duration: 1,
+      ease: "power2.out",
+    });
+  }
+
+  //   Animate the cursor light
+  if (cursorLight) {
+    gsap.to(cursorLight.position, {
+      x: cursorLightTarget.x,
+      y: cursorLightTarget.y,
       duration: 1,
       ease: "power2.out",
     });
