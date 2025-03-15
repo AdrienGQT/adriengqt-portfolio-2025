@@ -2,6 +2,10 @@
 @use '/src/css/scss/base/fonts';
 @use '/src/css/scss/base/base';
 
-body{
-    background-color: black;
-}
+
+// Components
+@use '/src/css/scss/components/text';
+@use '/src/css/scss/components/button';
+@use '/src/css/scss/components/header';
+@use '/src/css/scss/components/content-wrapper';
+@use '/src/css/scss/components/content';
