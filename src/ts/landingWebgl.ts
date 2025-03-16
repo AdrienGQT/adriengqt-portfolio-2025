@@ -25,52 +25,146 @@ const scene: THREE.Scene = new THREE.Scene();
 // Lights
 
 // Directionnal Light
-const directionnalLight = new THREE.DirectionalLight("#f0e6d0", 1.2);
-directionnalLight.position.set(1.2, 0.5, 6);
-scene.add(directionnalLight);
-
 const directionalLightSettings = {
   color: "#f0e6d0", // Store the original hex string
+  intensity: 1.2,
+  position: {
+    x: 1.2,
+    y: 0.5,
+    z: 6,
+  },
 };
 
-gui.add(directionnalLight, "intensity").min(1).max(10).step(0.1).name('Main intensity');
-gui.addColor(directionalLightSettings, "color").name('Main color').onChange((value: string) => {
+const directionnalLight = new THREE.DirectionalLight(
+  directionalLightSettings.color,
+  directionalLightSettings.intensity
+);
+directionnalLight.position.set(
+  directionalLightSettings.position.x,
+  directionalLightSettings.position.y,
+  directionalLightSettings.position.z
+);
+scene.add(directionnalLight);
+
+gui
+  .add(directionalLightSettings, "intensity")
+  .min(0)
+  .max(10)
+  .step(0.1)
+  .name("Main intensity")
+  .onChange((value: number) => {
+    directionnalLight.intensity = value;
+  });
+gui
+  .addColor(directionalLightSettings, "color")
+  .name("Main color")
+  .onChange((value: string) => {
     directionnalLight.color.set(value);
   });
-gui.add(directionnalLight.position, "x").min(-5).max(10).step(0.1).name('Main X');
-gui.add(directionnalLight.position, "y").min(-5).max(10).step(0.1).name('Main Y');
-gui.add(directionnalLight.position, "z").min(-5).max(10).step(0.1).name('Main Z');
-
+gui
+  .add(directionalLightSettings.position, "x")
+  .min(-5)
+  .max(10)
+  .step(0.1)
+  .name("Main X")
+  .onChange((value: number) => {
+    directionnalLight.position.x = value;
+  });
+gui
+  .add(directionalLightSettings.position, "y")
+  .min(-5)
+  .max(10)
+  .step(0.1)
+  .name("Main X")
+  .onChange((value: number) => {
+    directionnalLight.position.y = value;
+  });
+gui
+  .add(directionalLightSettings.position, "z")
+  .min(-5)
+  .max(10)
+  .step(0.1)
+  .name("Main X")
+  .onChange((value: number) => {
+    directionnalLight.position.z = value;
+  });
 
 // Ambient Light
-const ambientLight = new THREE.AmbientLight("#696969", 0.4);
-scene.add(ambientLight);
-
 const ambientLightSettings = {
   color: "#696969",
+  intensity: 0.4,
 };
 
-gui.add(ambientLight, "intensity").min(0).max(10).step(0.1).name('Ambient intensity');
+const ambientLight = new THREE.AmbientLight(
+  ambientLightSettings.color,
+  ambientLightSettings.intensity
+);
+scene.add(ambientLight);
 
-gui.addColor(ambientLightSettings, "color").name('Ambient color').onChange((value: string) => {
-  ambientLight.color.set(value);
-});
+gui
+  .add(ambientLightSettings, "intensity")
+  .min(0)
+  .max(10)
+  .step(0.1)
+  .name("Ambient intensity")
+  .onChange((value: number) => {
+    ambientLight.intensity = value;
+  });
+
+gui
+  .addColor(ambientLightSettings, "color")
+  .name("Ambient color")
+  .onChange((value: string) => {
+    ambientLight.color.set(value);
+  });
 
 // Cursor Light
-const cursorLight = new THREE.DirectionalLight("#16a5fe", 2.2);
-cursorLight.position.set(0, 0, 0.2);
-scene.add(cursorLight);
 
 const cursorLightSettings = {
-    color: "#16a5fe",
-  };
+  color: "#16a5fe",
+  intensity: 2.2,
+  position: {
+    x: 0,
+    y: 0,
+    z: 0.15,
+  },
+};
 
-gui.add(cursorLight, 'intensity').min(0).max(10).step(0.1).name('Cursor intensity')
-gui.addColor(cursorLightSettings, 'color').name('Cursor color').onChange((value: string) => {
-    cursorLight.color.set(value)
-})
-gui.add(cursorLight.position, 'z').min(0).max(10).step(0.1).name('Cursor Z')
+const cursorLight = new THREE.DirectionalLight(
+  cursorLightSettings.color,
+  cursorLightSettings.intensity
+);
+cursorLight.position.set(
+  cursorLightSettings.position.x,
+  cursorLightSettings.position.y,
+  cursorLightSettings.position.z
+);
+scene.add(cursorLight);
 
+gui
+  .add(cursorLightSettings, "intensity")
+  .min(0)
+  .max(10)
+  .step(0.1)
+  .name("Cursor intensity")
+  .onChange((value: number) => {
+    cursorLight.intensity = value;
+  });
+gui
+  .addColor(cursorLightSettings, "color")
+  .name("Cursor color")
+  .onChange((value: string) => {
+    cursorLight.color.set(value);
+  });
+gui
+  .add(cursorLightSettings.position, "z")
+  .min(0)
+  .max(10)
+  .step(0.1)
+  .name("Cursor Z")
+  .onChange((value: number) => {
+    cursorLight.position.z = value;
+  });
 
 /* Models */
 
@@ -83,11 +177,10 @@ gltfLoader.setDRACOLoader(dracoLoader);
 let myFace: THREE.Object3D | null = null;
 
 gltfLoader.load("/models/myFace.glb", (gltf) => {
-  // console.log(typeof(gltf.scene))
   myFace = gltf.scene;
-  myFace.scale.set(1.25,1.25,1.25)
+  myFace.scale.set(1.25, 1.25, 1.25);
   scene.add(myFace);
-
+  playReveal()
   tick();
 });
 
@@ -97,7 +190,6 @@ const updateCanvasSize = () => {
   const properties = container.getBoundingClientRect();
   sizes.width = properties.width;
   sizes.height = properties.height;
-  console.log(sizes.width, sizes.height);
 };
 
 let sizes = {
@@ -151,8 +243,8 @@ window.addEventListener("mousemove", (e: MouseEvent) => {
   targetRotation.y = (cursor.x * 2 - 1) / 13;
   targetRotation.x = (cursor.y * 2 - 1) / 13;
 
-  cursorLightTarget.x = (cursor.x - 0.5) * 3
-  cursorLightTarget.y = -(cursor.y - 0.5) * 3
+  cursorLightTarget.x = (cursor.x - 0.5) * 3;
+  cursorLightTarget.y = -(cursor.y - 0.5) * 3;
 });
 
 /* Camera */
@@ -182,11 +274,38 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 /* Animation */
 
-const clock = new THREE.Clock();
+const playReveal = () => {
+  gsap.from(directionnalLight.position, {
+    x: -3,
+    y: 0.5,
+    z: -2,
+    duration : 2,
+    ease: 'power3.inOut'
+  })
+  gsap.from(directionnalLight, {
+    intensity : 0,
+    duration : 2,
+    ease: 'power3.inOut'
+  })
+  gsap.from(ambientLight, {
+    intensity : 0,
+    duration : 2,
+    ease: 'power3.inOut'
+  })
+  gsap.from(cursorLight,{
+    intensity : 0,
+    delay : 1,
+    duration: 1,
+    ease : 'back.out'
+  })
+  
+}
+
+// const clock = new THREE.Clock();
 
 const tick = () => {
-  const elapsedTime = clock.getElapsedTime();
-  console.log(elapsedTime)
+  // const elapsedTime = clock.getElapsedTime();
+  // console.log(elapsedTime)
 
   //   Animate the face on cursor move
   if (myFace) {
@@ -198,7 +317,7 @@ const tick = () => {
     });
   }
 
-  //   Animate the cursor light
+    // Animate the cursor light
   if (cursorLight) {
     gsap.to(cursorLight.position, {
       x: cursorLightTarget.x,
