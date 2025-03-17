@@ -1,0 +1,15 @@
+.project-overview{
+    height: 100px;
+    aspect-ratio: 16 / 9;
+    // background: red;
+    position: absolute;
+    mix-blend-mode: hard-light;
+    opacity:  0;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &--timeline-gobelins{
+        // background: red;
+        background-image: url('/overviews/gobelins-timeline.webp');
+    }
+}

@@ -40,8 +40,8 @@
 // // Animation loop using requestAnimationFrame for optimal performance
 // function updateFramePosition() {
 //   // Calculate target position based on current cursor
-//   target.x = (cursor.x - 0.5) * 20; // Centered movement, adjust multiplier as needed
-//   target.y = (cursor.y - 0.5) * 20; // Centered movement, adjust multiplier as needed
+//   target.x = (cursor.x - 0.5) * 5; // Centered movement, adjust multiplier as needed
+//   target.y = (cursor.y - 0.5) * 5; // Centered movement, adjust multiplier as needed
   
 //   // Update the tween with new target values
 //   frameTween.vars.x = target.x;
