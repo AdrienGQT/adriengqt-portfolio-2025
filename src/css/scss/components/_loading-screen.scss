@@ -1,6 +1,9 @@
+@use "sass:map";
+@use "../base/variables";
+
 .loading-screen{
     z-index: 100;
-    background-color: black;
+    background-color: map.get(variables.$colors, dark-900 );
     position: absolute;
     top: 0;
     left: 0;

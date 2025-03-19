@@ -1,8 +1,13 @@
+@use "sass:map";
+@use "../base/variables";
+
 .text {
   font-family: "IBM Plex Mono", monospace;
+  font-family: 'ClashDisplay-Variable';
   font-style: normal;
+  letter-spacing: 0.05rem;
   text-transform: uppercase;
-  color: white;
+  color: map.get(variables.$colors, text-main);
   
 
   &--header {
@@ -14,10 +19,11 @@
 
   &--display {
     font-size: 96px;
-    font-weight: 400;
+    font-weight: 275;
     padding: 0;
     margin: 0;
     line-height: 110%;
+    color: map.get(variables.$colors, text-display);
 
     @media screen and (max-width : 500px) {
       font-size: 48px;
@@ -34,6 +40,7 @@
   &--project{
     font-size: 16px;
     font-weight: 300;
+    letter-spacing: 1px;
     padding: 0;
     margin: 0;
   }
