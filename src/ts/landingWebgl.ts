@@ -240,8 +240,8 @@ window.addEventListener("mousemove", (e: MouseEvent) => {
   cursor.x = e.clientX / window.innerWidth;
   cursor.y = e.clientY / window.innerHeight;
 
-  targetRotation.y = (cursor.x * 2 - 1) / 13;
-  targetRotation.x = (cursor.y * 2 - 1) / 13;
+  targetRotation.y = (cursor.x * 2 - 1) / 12;
+  targetRotation.x = (cursor.y * 2 - 1) / 12;
 
   cursorLightTarget.x = (cursor.x - 0.5) * 3;
   cursorLightTarget.y = -(cursor.y - 0.5) * 3;

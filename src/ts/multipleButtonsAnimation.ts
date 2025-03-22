@@ -5,7 +5,13 @@ import gsap from "gsap";
 const animationDuration = 0.15;
 
 const createAnimation = (elementsToAnimate: NodeListOf<Element>, offset : boolean) => {
-  const initialFontColor = getComputedStyle(projectListItemName[0]).color;
+
+  if(!elementsToAnimate.length){
+    console.log('No button in this page')
+    return
+  }
+
+  const initialFontColor = getComputedStyle(elementsToAnimate[0]).color;
 
   elementsToAnimate.forEach((element) => {
     // Use a single event listener for each element
