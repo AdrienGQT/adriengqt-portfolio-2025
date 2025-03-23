@@ -1,0 +1,40 @@
+.project {
+  padding-top: 128px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__paragraph {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__view {
+    width: 100%;
+    gap: 16px;
+    background-color: red;
+    display: flex;
+  }
+
+  &__media {
+    width: 100%;
+
+    &--horizontal{
+      aspect-ratio: 16 / 9;
+    }
+
+    &--vertical{
+      aspect-ratio: 9 / 16;
+    }
+  }
+}

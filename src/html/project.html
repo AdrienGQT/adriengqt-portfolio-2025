@@ -9,8 +9,111 @@
   </head>
   <body>
     <!-- Loading screen -->
-     <div class="loading-screen"></div>
-        <h1 class="text">HELLO YOU</h1>
+    <div class="loading-screen"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header__part header__part--left">
+        <h1 class="text text--header">Adrien Gasquet</h1>
+      </div>
+      <div class="header__part header__part--center">
+        <p class="text text--header header__clock">
+          <span id="clock" class="header__clock--left">00:00:00</span>
+          <span class="header__clock--right">Paris</span>
+        </p>
+      </div>
+      <div class="header__part header__part--right">
+        <a href="#" class="text text--header button headerButton"
+          >Visit github</a
+        >
+        <a href="#" class="text text--header button headerButton"
+          >Download resume</a
+        >
+      </div>
+    </header>
+
+    <!-- Content -->
+
+    <div class="content-wrapper">
+      <div class="content content">
+        <div class="project">
+          <div class="project__head">
+            <h3 class="project__title text text--projectTitle">Project Name</h3>
+            <div class="list" id="projectList">
+              <p class="text text--listTitle list__title">[ Technologies ]</p>
+              <div class="list__content" id="projectListContent">
+                <div class="list__item">
+                  <p class="list__itemName text text--project">
+                    Technologie #1
+                  </p>
+                </div>
+                <div class="list__item">
+                  <p class="list__itemName text text--project">
+                    Technologie #1
+                  </p>
+                </div>
+                <div class="list__item">
+                  <p class="list__itemName text text--project">
+                    Technologie #1
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project__paragraph">
+            <p class="project__paragraphTitle text text--paragraphTitle">
+              Lorem, ipsum dolor.
+            </p>
+            <p class="project__paragraphText text text--p">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit
+              deserunt laboriosam non officiis. Illo ipsa obcaecati accusantium
+              tempore perferendis error nisi cumque repellat, ab minima
+              consectetur mollitia eius numquam molestias porro autem cum unde
+              ea labore ullam. Consequatur sed eligendi maiores est veniam quos
+              possimus tenetur, qui non neque magnam animi veritatis nisi unde
+              placeat officiis quia eaque ut explicabo aliquid ex! Fugiat amet,
+              sunt pariatur enim sit blanditiis ea quam in eveniet provident
+              numquam voluptatum harum doloremque incidunt, quos, totam fuga
+              omnis quasi! Atque ratione esse maiores nam suscipit quae neque.
+              At sequi error dolor fugiat nesciunt, alias odit?
+            </p>
+          </div>
+          <div class="project__view">
+            <img
+              class="project__media project__media--horizontal"
+              src="/projects-content/timeline-gobelins/screen-1.webp"
+              alt=""
+            />
+          </div>
+          <div class="project__paragraph">
+            <p class="project__paragraphTitle text text--paragraphTitle">
+              Lorem, ipsum dolor.
+            </p>
+            <p class="project__paragraphText text text--p">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit
+              deserunt laboriosam non officiis. Illo ipsa obcaecati accusantium
+              tempore perferendis error nisi cumque repellat, ab minima
+              consectetur mollitia eius numquam molestias porro autem cum unde
+              ea labore ullam. Consequatur sed eligendi maiores est veniam quos
+              possimus tenetur, qui non neque magnam animi veritatis nisi unde
+              placeat officiis quia eaque ut explicabo aliquid ex! Fugiat amet,
+              sunt pariatur enim sit blanditiis ea quam in eveniet provident
+              numquam voluptatum harum doloremque incidunt, quos, totam fuga
+              omnis quasi! Atque ratione esse maiores nam suscipit quae neque.
+              At sequi error dolor fugiat nesciunt, alias odit?
+            </p>
+          </div>
+          <div class="project__view">
+            <img
+              class="project__media project__media--horizontal"
+              src="/projects-content/timeline-gobelins/screen-2.webp"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- JS -->
     <script type="module" src="/src/main.ts"></script>
   </body>

@@ -1,23 +1,5 @@
 import gsap from "gsap";
 
-// const pageSwitchTo = (targetPageName: string) => {
-
-//   const loadingScreen: HTMLElement = document.querySelector(
-//     ".loading-screen"
-//   ) as HTMLElement;
-
-//   gsap.to(loadingScreen, {
-//     delay: 0.5,
-//     duration: 1,
-//     ease: "power2.inOut",
-//     opacity: 1,
-//     onComplete: () => {
-//       window.location.href = `/src/html/${targetPageName}`;
-//     },
-//   });
-
-// };
-
 console.log("Loading pageswitch");
 
 document.addEventListener(

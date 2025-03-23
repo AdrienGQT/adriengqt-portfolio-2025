@@ -13,4 +13,8 @@
 @use '/src/css/scss/components/content';
 @use '/src/css/scss/components/webgl-canvas';
 @use '/src/css/scss/components/project-list';
+@use '/src/css/scss/components/list';
 @use '/src/css/scss/components/project-overview';
+
+// Project
+@use '/src/css/scss/components/project/project';
